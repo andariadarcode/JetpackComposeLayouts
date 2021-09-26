@@ -25,8 +25,39 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MyApp() {
+    // Row layout
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceEvenly,
+        modifier = Modifier.fillMaxSize()
+    ) {
+        Text(
+            text = "Text 1",
+            fontSize = 25.sp,
+            color = Color.White,
+            modifier = Modifier
+                .background(Color(0xff5600e8))
+                .padding(16.dp)
+        )
+        Text(
+            text = "Text 2",
+            fontSize = 25.sp,
+            color = Color.White,
+            modifier = Modifier
+                .background(Color(0xff6200ee))
+                .padding(16.dp)
+        )
+        Text(
+            text = "Text 3",
+            fontSize = 25.sp,
+            color = Color.White,
+            modifier = Modifier
+                .background(Color(0xff7f39fb))
+                .padding(16.dp)
+        )
+    }
     // Column layout
-    Column(
+    /*Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement= Arrangement.SpaceAround,
         modifier = Modifier.fillMaxSize()
@@ -55,7 +86,7 @@ fun MyApp() {
                 .background(Color(0xff7f39fb))
                 .padding(16.dp)
         )
-    }
+    }*/
 
     // Box Layout
     /*Box(
