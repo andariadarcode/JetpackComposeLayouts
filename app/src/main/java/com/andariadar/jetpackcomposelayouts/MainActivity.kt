@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -13,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.constraintlayout.compose.ConstraintLayout
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,8 +27,50 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MyApp() {
+    // ConstraintLayout
+    ConstraintLayout(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
+        val (text, button1, button2) = createRefs()
+
+        Text(
+            modifier = Modifier
+                .constrainAs(text) {
+                start.linkTo(parent.start)
+                end.linkTo(parent.end)
+                top.linkTo(parent.top)
+                bottom.linkTo(parent.bottom)
+            }
+                .padding(bottom = 16.dp),
+            text = "Text",
+            fontSize = 27.sp
+        )
+
+        Button(
+            onClick = {},
+            modifier = Modifier.constrainAs(button1) {
+                start.linkTo(parent.start)
+                top.linkTo(text.bottom)
+                end.linkTo(button2.start)
+        }) {
+            Text(text = "Button1")
+        }
+
+        Button(
+            onClick = {},
+            modifier = Modifier.constrainAs(button2) {
+                end.linkTo(parent.end)
+                top.linkTo(text.bottom)
+                start.linkTo(button1.end)
+            }) {
+            Text(text = "Button2")
+        }
+    }
+
     // Row layout
-    Row(
+    /*Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceEvenly,
         modifier = Modifier.fillMaxSize()
@@ -55,7 +99,7 @@ fun MyApp() {
                 .background(Color(0xff7f39fb))
                 .padding(16.dp)
         )
-    }
+    }*/
     // Column layout
     /*Column(
         horizontalAlignment = Alignment.CenterHorizontally,
